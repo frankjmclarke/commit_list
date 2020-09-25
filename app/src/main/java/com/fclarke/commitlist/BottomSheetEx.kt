@@ -19,21 +19,14 @@ private const val ARG_PARAM2 = "param2"
 
 class BottomSheetEx : BottomSheetDialogFragment() {
 
-    private var mBottomSheetListener: BottomSheetListener?=null
+    private var mBottomSheetListener: BottomSheetListener? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.bottom_sheet_persistent, container, false)
-
-       // bundle.putString("avatarUrl", user.avatarUrl)
-      //  bundle.putString("dateIn", user.dateIn)
-      //  bundle.putString("loginOut", user.loginOut)
-      //  bundle.putString("htmlUrl", user.htmlUrl)
-       // bundle.putString("sha", user.sha)
-      //  bundle.putString("message", user.message)
-
-
 
         val avatarUrl = getArguments()?.getString("avatarUrl")
         val dateIn = getArguments()?.getString("dateIn")
@@ -41,16 +34,16 @@ class BottomSheetEx : BottomSheetDialogFragment() {
         val htmlUrl = getArguments()?.getString("htmlUrl")
         val sha = getArguments()?.getString("sha")
         val message = getArguments()?.getString("message")
-        var iv : ImageView =v.findViewById(R.id.imageView1)
-        Picasso.get().load(avatarUrl).into(iv);
+        val iv: ImageView = v.findViewById(R.id.imageView1)
+        Picasso.get().load(avatarUrl).into(iv)
 
-        val dateInV : TextView =v.findViewById(R.id.dateIn)
-        val loginOutV : TextView =v.findViewById(R.id.loginOut)
-        val messageV : TextView =v.findViewById(R.id.message)
-        val shaV : TextView =v.findViewById(R.id.sha)
-        shaV.setText("SHA: "+sha)
-        dateInV.setText("Date: "+dateIn)
-        loginOutV.setText("Login: "+loginOut)
+        val dateInV: TextView = v.findViewById(R.id.dateIn)
+        val loginOutV: TextView = v.findViewById(R.id.loginOut)
+        val messageV: TextView = v.findViewById(R.id.message)
+        val shaV: TextView = v.findViewById(R.id.sha)
+        shaV.setText("SHA: " + sha)
+        dateInV.setText("Date: " + dateIn)
+        loginOutV.setText("Login: " + loginOut)
         messageV.setText(message)
 
         v.imageView1.setOnClickListener {
@@ -58,30 +51,12 @@ class BottomSheetEx : BottomSheetDialogFragment() {
             intent.data = Uri.parse(htmlUrl)
             startActivity(intent)
         }
-        /*
-        try {
-            mBottomSheetListener = context as BottomSheetListener?
-        }
-        catch (e: ClassCastException){
-            throw ClassCastException(context!!.toString())
-        }*/
+
         return v
     }
 
-    interface BottomSheetListener{
+    interface BottomSheetListener {
         fun onOptionClick(text: String)
     }
-/*
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        try {
-            mBottomSheetListener = context as BottomSheetListener?
-        }
-        catch (e: ClassCastException){
-            throw ClassCastException(context!!.toString())
-        }
-*/
-
 
 }

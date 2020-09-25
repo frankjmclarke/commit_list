@@ -32,8 +32,6 @@ class MainFragment : Fragment(), OnItemClickListener, BottomSheetEx.BottomSheetL
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onItemClicked(user: Commit) { //this is the important onClick
-        var s: String
-        //Toast.makeText(context,"User name ", Toast.LENGTH_LONG).show()
         val bundle = Bundle()
         bundle.putString("avatarUrl", user.avatarUrl)
         bundle.putString("dateIn", user.dateIn)
@@ -43,9 +41,8 @@ class MainFragment : Fragment(), OnItemClickListener, BottomSheetEx.BottomSheetL
         bundle.putString("message", user.message)
 
         val bottomSheet = BottomSheetEx()
-        bottomSheet.setArguments(bundle);
+        bottomSheet.setArguments(bundle)
         this.fragmentManager?.let { bottomSheet.show(it, "BottomSheetEx") }
-        //bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         val state =
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED)
                 BottomSheetBehavior.STATE_COLLAPSED
@@ -66,8 +63,7 @@ class MainFragment : Fragment(), OnItemClickListener, BottomSheetEx.BottomSheetL
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_main, container, false)
-        parseJson();
-
+        parseJson()
         return view
     }
 
@@ -85,24 +81,10 @@ class MainFragment : Fragment(), OnItemClickListener, BottomSheetEx.BottomSheetL
         }
 
         myAdapter.notifyDataSetChanged()
-        //var bottom_sheet:ConstraintLayout = view.findViewById(R.id.bottomSheet);
-        //bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 
         bottomSheetBehavior = BottomSheetBehavior()
-        //#3 Listening to State Changes of BottomSheet
         bottomSheetBehavior.isHideable = true
         bottomSheetBehavior.peekHeight = 16
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                var s: String
-            }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                var s: String
-            }
-        })
-
 
     }
 
